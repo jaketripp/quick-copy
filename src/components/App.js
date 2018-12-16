@@ -1,24 +1,13 @@
+// packages
 import React, { Component } from "react";
+import uuidv4 from "uuid/v4";
+
+// components
 import Header from "./Header";
 import DeleteToggle from "./DeleteToggle";
 import Form from "./Form";
 import CopyBlockList from "./CopyBlockList";
 import Footer from "./Footer";
-
-import "../styles/main.scss";
-
-import "typeface-roboto";
-
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { orange, blue } from "@material-ui/core/colors";
-const theme = createMuiTheme({
-  palette: {
-    primary: blue,
-    secondary: orange
-  }
-});
-
-const uuidv4 = require("uuid/v4");
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +17,11 @@ class App extends Component {
       shouldDeleteAfter: true
     };
   }
+
+  // update parent state when switch toggled
+  handleSwitchChange = e => {
+    this.setState({ shouldDeleteAfter: !this.state.shouldDeleteAfter });
+  };
 
   // have form update map when submit button pressed
   formSubmit = textContent => {
@@ -49,38 +43,34 @@ class App extends Component {
     this.setState({ copyBlockMap });
   };
 
-  // update parent state when switch toggled
-  handleSwitchChange = e => {
-    this.setState({ shouldDeleteAfter: !this.state.shouldDeleteAfter });
-  };
-
   render() {
     const shouldShowCopyBlockList = Object.values(this.state.copyBlockMap).length > 0;
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <Header />
-          <DeleteToggle
-            shouldDeleteAfter={this.state.shouldDeleteAfter}
-            handleSwitchChange={this.handleSwitchChange}
-          />
-          {shouldShowCopyBlockList && (
-            <CopyBlockList
-              copyBlockMap={this.state.copyBlockMap}
-              deleteCopyBlock={this.deleteCopyBlock}
-              shouldDeleteAfter={this.state.shouldDeleteAfter}
-            />
-          )}
-          
-          <Form
-            textContent={this.state.textContent}
+      <div className="App">
+        <Header />
+
+        <DeleteToggle
+          shouldDeleteAfter={this.state.shouldDeleteAfter}
+          handleSwitchChange={this.handleSwitchChange}
+        />
+
+        {shouldShowCopyBlockList && (
+          <CopyBlockList
             copyBlockMap={this.state.copyBlockMap}
-            formSubmit={this.formSubmit}
-            onTextChange={this.onTextChange}
+            deleteCopyBlock={this.deleteCopyBlock}
+            shouldDeleteAfter={this.state.shouldDeleteAfter}
           />
-          <Footer />
-        </div>
-      </MuiThemeProvider>
+        )}
+
+        <Form
+          textContent={this.state.textContent}
+          copyBlockMap={this.state.copyBlockMap}
+          formSubmit={this.formSubmit}
+          onTextChange={this.onTextChange}
+        />
+
+        <Footer />
+      </div>
     );
   }
 }
