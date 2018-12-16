@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form > * {
+  flex: 1 1 100%;
+}
+
+.form__button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: $s-size auto;
+  button {
+    flex: 0 1 120px;
+    justify-self: flex-end;
+  }
+}
