@@ -16,6 +16,7 @@ class Form extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
+    // this.setState({ textContent: "" })
     this.props.formSubmit(this.state.textContent);
   };
 
@@ -25,7 +26,7 @@ class Form extends Component {
         <TextField
           className="form__textarea"
           id="standard-multiline-flexible"
-          label="Literally anything you want to copy"
+          label="Whatever you want to copy"
           multiline
           rows="3"
           rowsMax="12"
@@ -35,7 +36,7 @@ class Form extends Component {
         <div className="form__button-container">
           <Button
             type="submit"
-            color="primary"
+            color="secondary"
             variant="contained"
             disabled={this.state.textContent == ""}
           >

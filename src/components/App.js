@@ -8,12 +8,24 @@ import "../styles/main.scss";
 
 import "typeface-roboto";
 
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { orange, blue }  from '@material-ui/core/colors';
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: orange
+  }
+});
+
 const uuidv4 = require("uuid/v4");
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { copyBlockMap: {1: "jake", 2: "joel"} };
+    this.state = {
+      copyBlockMap: {},
+      thingLastCopied: ""
+    };
   }
 
   // have form update map when submit button pressed
@@ -37,22 +49,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        {Object.values(this.state.copyBlockMap).length > 0 && (
-          <CopyBlockList
+      <MuiThemeProvider theme={theme}>
+        <div className="App">
+          <Header />
+          {Object.values(this.state.copyBlockMap).length > 0 && (
+            <CopyBlockList
+              copyBlockMap={this.state.copyBlockMap}
+              deleteCopyBlock={this.deleteCopyBlock}
+            />
+          )}
+          <Form
+            textContent={this.state.textContent}
             copyBlockMap={this.state.copyBlockMap}
-            deleteCopyBlock={this.deleteCopyBlock}
+            formSubmit={this.formSubmit}
+            onTextChange={this.onTextChange}
           />
-        )}
-        <Form
-          textContent={this.state.textContent}
-          copyBlockMap={this.state.copyBlockMap}
-          formSubmit={this.formSubmit}
-          onTextChange={this.onTextChange}
-        />
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
