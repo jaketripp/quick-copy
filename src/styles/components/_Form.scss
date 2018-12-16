@@ -16,3 +16,8 @@
     justify-self: flex-end;
   }
 }
+
+.form__textarea textarea {
+  font-size: $font-size-small;
+  line-height: 1.1; 
+}

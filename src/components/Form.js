@@ -16,7 +16,7 @@ class Form extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    // this.setState({ textContent: "" })
+    this.setState({ textContent: "" })
     this.props.formSubmit(this.state.textContent);
   };
 
@@ -26,9 +26,8 @@ class Form extends Component {
         <TextField
           className="form__textarea"
           id="standard-multiline-flexible"
-          label="Whatever you want to copy"
+          label="What you want to copy"
           multiline
-          rows="3"
           rowsMax="12"
           value={this.state.textContent}
           onChange={this.onTextChange}

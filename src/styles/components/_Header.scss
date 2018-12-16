@@ -1,5 +1,13 @@
 .header {
-  padding: $s-size 0;
-  margin: 0 auto;
+  padding: 40px 0;
+  margin: 8px auto 16px;
   text-align: center;
+  font-size: $font-size-medium;
+  background: $blue;
+  border-radius: 4px;
+  color: white;
+  box-shadow: $box-shadow;
+  h1 {
+    margin: 0 auto;
+  }
 }
