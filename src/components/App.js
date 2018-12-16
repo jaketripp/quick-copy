@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import uuidv4 from "uuid/v4";
 
 // components
+import RecentlyCopied from "./RecentlyCopied";
 import Toast from "./Toast";
 import Header from "./Header";
 import DeleteToggle from "./DeleteToggle";
@@ -16,9 +17,15 @@ class App extends Component {
     this.state = {
       copyBlockMap: {},
       shouldDeleteAfter: true,
-      shouldShowToast: false
+      shouldShowToast: false,
+      recentlyCopied: ""
     };
   }
+
+  // update recently copied when copy block clicked
+  updateRecentlyCopied = mostRecentlyCopied => {
+    this.setState({ recentlyCopied: mostRecentlyCopied });
+  };
 
   // update parent state when switch toggled
   handleSwitchChange = e => {
@@ -50,14 +57,20 @@ class App extends Component {
   };
 
   render() {
+    const shouldShowRecentlyCopied = !!this.state.recentlyCopied;
     const shouldShowCopyBlockList =
       Object.values(this.state.copyBlockMap).length > 0;
     return (
       <div className="App">
+        {shouldShowRecentlyCopied && (
+          <RecentlyCopied content={this.state.recentlyCopied} />
+        )}
+
         <Toast
           shouldShowToast={this.state.shouldShowToast}
           onClose={this.toggleCopiedToast}
         />
+
         <Header />
 
         <DeleteToggle
@@ -68,6 +81,7 @@ class App extends Component {
         {shouldShowCopyBlockList && (
           <CopyBlockList
             copyBlockMap={this.state.copyBlockMap}
+            updateRecentlyCopied={this.updateRecentlyCopied}
             deleteCopyBlock={this.deleteCopyBlock}
             toggleCopiedToast={this.toggleCopiedToast}
             shouldDeleteAfter={this.state.shouldDeleteAfter}

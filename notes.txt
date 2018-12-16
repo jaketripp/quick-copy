@@ -1,0 +1,14 @@
+form functionality
+block functionality
+header
+footer
+form design
+block design
+block disappear animation
+delete after copy toggle functionality
+delete after copy toggle design
+copy animation
+
+recently copied component functionality
+recently copied component design
+recently copied component animation
