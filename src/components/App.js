@@ -62,39 +62,41 @@ class App extends Component {
       Object.values(this.state.copyBlockMap).length > 0;
     return (
       <div className="App">
-        {shouldShowRecentlyCopied && (
-          <RecentlyCopied content={this.state.recentlyCopied} />
-        )}
+        <div className="sidebar">
+          {shouldShowRecentlyCopied && (
+            <RecentlyCopied content={this.state.recentlyCopied} />
+          )}
 
-        <Toast
-          shouldShowToast={this.state.shouldShowToast}
-          onClose={this.toggleCopiedToast}
-        />
-
-        <Header />
-
-        <DeleteToggle
-          shouldDeleteAfter={this.state.shouldDeleteAfter}
-          handleSwitchChange={this.handleSwitchChange}
-        />
-
-        {shouldShowCopyBlockList && (
-          <CopyBlockList
-            copyBlockMap={this.state.copyBlockMap}
-            updateRecentlyCopied={this.updateRecentlyCopied}
-            deleteCopyBlock={this.deleteCopyBlock}
-            toggleCopiedToast={this.toggleCopiedToast}
-            shouldDeleteAfter={this.state.shouldDeleteAfter}
+          <Toast
+            shouldShowToast={this.state.shouldShowToast}
+            onClose={this.toggleCopiedToast}
           />
-        )}
+        </div>
+        <div className="main">
+          <Header />
 
-        <Form
-          textContent={this.state.textContent}
-          copyBlockMap={this.state.copyBlockMap}
-          formSubmit={this.formSubmit}
-          onTextChange={this.onTextChange}
-        />
+          <DeleteToggle
+            shouldDeleteAfter={this.state.shouldDeleteAfter}
+            handleSwitchChange={this.handleSwitchChange}
+          />
 
+          {shouldShowCopyBlockList && (
+            <CopyBlockList
+              copyBlockMap={this.state.copyBlockMap}
+              updateRecentlyCopied={this.updateRecentlyCopied}
+              deleteCopyBlock={this.deleteCopyBlock}
+              toggleCopiedToast={this.toggleCopiedToast}
+              shouldDeleteAfter={this.state.shouldDeleteAfter}
+            />
+          )}
+
+          <Form
+            textContent={this.state.textContent}
+            copyBlockMap={this.state.copyBlockMap}
+            formSubmit={this.formSubmit}
+            onTextChange={this.onTextChange}
+          />
+        </div>
         <Footer />
       </div>
     );
