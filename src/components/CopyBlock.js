@@ -12,10 +12,10 @@ class CopyBlock extends Component {
   
   copyBlockClicked = () => {
     copyTextToClipboard(this.props.content);
-    const { shouldDeleteAfter } = this.props;
-    console.log(shouldDeleteAfter);
-    if (shouldDeleteAfter) {
+    if (this.props.shouldDeleteAfter) {
+      // apply css class to fade out
       this.setState({ show: false });
+      // wait a bit then remove from map
       setTimeout(() => {
         this.props.deleteCopyBlock(this.props.uuid);
       }, 300);
@@ -27,7 +27,7 @@ class CopyBlock extends Component {
     return (
       <Card onClick={this.copyBlockClicked} className={cardClass}>
         <CardContent>
-          <Typography color="textSecondary">{this.props.content}</Typography>
+          <Typography>{this.props.content}</Typography>
         </CardContent>
       </Card>
     );

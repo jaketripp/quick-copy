@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormControlLabel, Switch, TextField, Button } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 
 class Form extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Form extends Component {
             type="submit"
             color="secondary"
             variant="contained"
-            disabled={this.state.textContent == ""}
+            disabled={this.state.textContent === ""}
           >
             Submit
           </Button>
