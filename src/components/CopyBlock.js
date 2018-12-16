@@ -12,10 +12,14 @@ class CopyBlock extends Component {
   
   copyBlockClicked = () => {
     copyTextToClipboard(this.props.content);
-    this.setState({ show: false });
-    setTimeout(() => {
-      this.props.deleteCopyBlock(this.props.uuid);
-    }, 300);
+    const { shouldDeleteAfter } = this.props;
+    console.log(shouldDeleteAfter);
+    if (shouldDeleteAfter) {
+      this.setState({ show: false });
+      setTimeout(() => {
+        this.props.deleteCopyBlock(this.props.uuid);
+      }, 300);
+    }
   };
 
   render() {

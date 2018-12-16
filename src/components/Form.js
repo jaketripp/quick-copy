@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TextField, Button } from "@material-ui/core";
+import { FormControlLabel, Switch, TextField, Button } from "@material-ui/core";
 
 class Form extends Component {
   constructor(props) {
@@ -9,14 +9,13 @@ class Form extends Component {
     };
   }
 
-  onTextChange = e => {
-    const textContent = e.target.value;
-    this.setState({ textContent });
-  };
+  handleTextChange = e => {
+    this.setState({ textContent : e.target.value });
+  }
 
   handleFormSubmit = e => {
     e.preventDefault();
-    this.setState({ textContent: "" })
+    this.setState({ textContent: "" });
     this.props.formSubmit(this.state.textContent);
   };
 
@@ -30,7 +29,7 @@ class Form extends Component {
           multiline
           rowsMax="12"
           value={this.state.textContent}
-          onChange={this.onTextChange}
+          onChange={this.handleTextChange}
         />
         <div className="form__button-container">
           <Button
