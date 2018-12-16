@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import uuidv4 from "uuid/v4";
 
 // components
+import Toast from "./Toast";
 import Header from "./Header";
 import DeleteToggle from "./DeleteToggle";
 import Form from "./Form";
@@ -14,7 +15,8 @@ class App extends Component {
     super(props);
     this.state = {
       copyBlockMap: {},
-      shouldDeleteAfter: true
+      shouldDeleteAfter: true,
+      shouldShowToast: false
     };
   }
 
@@ -43,10 +45,19 @@ class App extends Component {
     this.setState({ copyBlockMap });
   };
 
+  toggleCopiedToast = () => {
+    this.setState({ shouldShowToast: !this.state.shouldShowToast });
+  };
+
   render() {
-    const shouldShowCopyBlockList = Object.values(this.state.copyBlockMap).length > 0;
+    const shouldShowCopyBlockList =
+      Object.values(this.state.copyBlockMap).length > 0;
     return (
       <div className="App">
+        <Toast
+          shouldShowToast={this.state.shouldShowToast}
+          onClose={this.toggleCopiedToast}
+        />
         <Header />
 
         <DeleteToggle
@@ -58,6 +69,7 @@ class App extends Component {
           <CopyBlockList
             copyBlockMap={this.state.copyBlockMap}
             deleteCopyBlock={this.deleteCopyBlock}
+            toggleCopiedToast={this.toggleCopiedToast}
             shouldDeleteAfter={this.state.shouldDeleteAfter}
           />
         )}

@@ -11,6 +11,7 @@ const CopyBlockList = props => (
           content={props.copyBlockMap[uuid]}
           deleteCopyBlock={props.deleteCopyBlock}
           shouldDeleteAfter={props.shouldDeleteAfter}
+          showCopiedToast={props.toggleCopiedToast}
         />
       );
     })}

@@ -12,6 +12,7 @@ class CopyBlock extends Component {
   
   copyBlockClicked = () => {
     copyTextToClipboard(this.props.content);
+    this.props.showCopiedToast();
     if (this.props.shouldDeleteAfter) {
       // apply css class to fade out
       this.setState({ show: false });
