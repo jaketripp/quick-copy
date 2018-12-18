@@ -62,16 +62,6 @@ class App extends Component {
       Object.values(this.state.copyBlockMap).length > 0;
     return (
       <div className="App">
-        <div className="sidebar">
-          {shouldShowRecentlyCopied && (
-            <RecentlyCopied content={this.state.recentlyCopied} />
-          )}
-
-          <Toast
-            shouldShowToast={this.state.shouldShowToast}
-            onClose={this.toggleCopiedToast}
-          />
-        </div>
         <div className="main">
           <Header />
 
@@ -95,6 +85,16 @@ class App extends Component {
             copyBlockMap={this.state.copyBlockMap}
             formSubmit={this.formSubmit}
             onTextChange={this.onTextChange}
+          />
+        </div>
+        <div className="sidebar">
+          {shouldShowRecentlyCopied && (
+            <RecentlyCopied content={this.state.recentlyCopied} />
+          )}
+
+          <Toast
+            shouldShowToast={this.state.shouldShowToast}
+            onClose={this.toggleCopiedToast}
           />
         </div>
         <Footer />

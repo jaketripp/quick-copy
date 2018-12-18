@@ -1,12 +1,19 @@
 .App {
   min-height: calc(100vh - 48px);
-  max-width: calc(100% - 48px);
-  width: 1400px;
+  max-width: 1400px;
+  width: calc(100% - 48px);
   margin: 0 auto;
   padding: 24px;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .main {
-  max-width: 1000px;
+  flex: 10 1 500px;
+}
+
+.sidebar {
+  flex: 1 1 350px;
+  min-width: 250px;
 }
