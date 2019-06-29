@@ -1,0 +1,13 @@
+.deleteToggle, .splitCharacterToggle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.splitCharacterInput {
+  display: flex;
+  justify-content: flex-end;
+  > * {
+    flex: 0 1 224px;
+  }
+}
